@@ -7,14 +7,24 @@ double b1 = AskDoubleNumber("Введите b1: ");
 double k2 = AskDoubleNumber("Введите k2: ");
 double b2 = AskDoubleNumber("Введите b2: ");
 
-double[] crossCoordinates = FindCrossPoint(k1,b1,k2,b2);
-PrintArray(crossCoordinates);
+if (isCrossing(k1, k2))
+{
+    double[] crossCoordinates = FindCrossPoint(k1, b1, k2, b2);
+    PrintArray(crossCoordinates);
+}
+else
+    System.Console.WriteLine("Линии не пересекаются");
+
+bool isCrossing(double k1, double k2)
+{
+    return k1 != k2;
+}
 
 double[] FindCrossPoint(double k1, double b1, double k2, double b2)
 {
     double[] result = new double[2];
-    result[0] = (b2-b1)/(k1-k2);
-    result[1] = (k1*b2-k2*b1)/(k1-k2);
+    result[0] = (b2 - b1) / (k1 - k2);
+    result[1] = (k1 * b2 - k2 * b1) / (k1 - k2);
 
     return result;
 }
@@ -29,8 +39,11 @@ double AskDoubleNumber(string WelcomeText)
 void PrintArray(double[] array)
 {
     int count = array.Length;
+    double numberRounded;
     Console.Write("[");
     for (int i = 0; i < count; i++)
-        Console.Write(array[i] + ((i == count - 1) ? "]" : ", "));
-
+        {
+            numberRounded = Math.Round(array[i],3);
+        Console.Write(numberRounded + ((i == count - 1) ? "]" : ", "));
+}
 }
